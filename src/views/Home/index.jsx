@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext } from 'react'
 import { Card, Col, Container, Row } from 'react-bootstrap'
 import PanelCertificados from './PanelCertificados'
 import Cart from './Cart'
@@ -6,28 +6,10 @@ import FormalitiesInfo from './FormalitiesInfo'
 import HowToMake from './HowToMake'
 import { TemplateRow } from 'components'
 import Ending from './Ending'
-import { useEffect } from 'react'
+import { AppContext } from 'context/AppProvider'
 
 const Home = () => {
-    const [shopping, setShopping] = useState([]);
-    const [lastStep, setLastStep] = useState(false);
-    const [customer, setCustomer] = useState({
-        run: '',
-        document: '',
-        email: ''
-    });
-
-    useEffect(() => {
-        if(!lastStep) {
-            setCustomer({
-                run: '',
-                document: '',
-                email: ''
-            })
-            setShopping([])
-        }
-
-    }, [lastStep])
+    const { lastStep } = useContext(AppContext);
 
     return (
         <>
@@ -50,24 +32,14 @@ const Home = () => {
                                 {!lastStep ? (
                                     <>
                                         <Col sm={12} md={6}>
-                                            <PanelCertificados
-                                                setShopping={setShopping}
-                                            />
+                                            <PanelCertificados />
                                         </Col>
                                         <Col sm={12} md={6}>
-                                            <Cart
-                                                shopping={shopping}
-                                                setLastStep={setLastStep}
-                                                setCustomer={setCustomer}
-                                            />
+                                            <Cart />
                                         </Col>
                                     </>
                                 ) : (
-                                    <Ending 
-                                        customer={customer} 
-                                        shopping={shopping}
-                                        setLastStep={setLastStep}
-                                    />
+                                    <Ending />
                                 )}
                             </Row>
                         </Card.Body>

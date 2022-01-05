@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap'
 import { InputFormat } from 'components'
 import { globe_img, visa_img, mastercard_img, american_express_img } from 'assets/img'
@@ -18,7 +19,7 @@ const Payment = () => {
     const handlePay = () => console.info(data)
 
     return (
-        <Container className='py-5'>
+        <Container className='py-4'>
             <Row className='p-4'>
                 <Col md={{ span: 8, offset: 2 }} className='bg-white'>
                     <Card>
@@ -100,13 +101,18 @@ const Payment = () => {
                                         </div>
                                     </Col>
                                     <Col md={{ span: 10, offset: 1 }} className='my-4'>
-                                        <div className='d-grid gap-2'>
+                                        <div className='d-grid gap-2 mb-3'>
                                             <Button
                                                 size='sm'
                                                 onClick={handlePay}
                                             >
                                                 Pagar
                                             </Button>
+                                        </div>
+                                        <div className='div-center'>
+                                            <Link to='/' className='text-decoration-none'>
+                                                Cancelar
+                                            </Link>
                                         </div>
                                     </Col>
                                 </Row>

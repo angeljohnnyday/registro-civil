@@ -3,8 +3,11 @@ import { Button, Form, Table } from 'react-bootstrap'
 import { ArrowDownIcon, ArrowRightIcon, CheckIcon } from 'assets/icons'
 import { certificados } from './data'
 import { InputFormat } from 'components'
+import { useContext } from 'react'
+import { AppContext } from 'context/AppProvider'
 
-const PanelCertificados = ({ setShopping }) => {
+const PanelCertificados = () => {
+    const { setShopping } = useContext(AppContext);
     const [open, setOpen] = useState([]);
     const [selects, setSelects] = useState([]);
 

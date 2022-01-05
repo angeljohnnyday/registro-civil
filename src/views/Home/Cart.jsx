@@ -1,15 +1,15 @@
-import { useMemo } from 'react'
+import { useContext, useMemo } from 'react'
 import { Button, Card, Form } from 'react-bootstrap'
 import { ShopKartIcon } from 'assets/icons'
 import { formatter } from 'assets/js/generic'
+import { AppContext } from 'context/AppProvider'
 
-const Cart = ({ shopping = [], setLastStep, setCustomer }) => {
+const Cart = () => {
+    const { shopping, setLastStep, setCustomer } = useContext(AppContext);
 
     const total = useMemo(() => {
 
-        if (shopping.length !== 0) {
-            return shopping.reduce((a, { costo }) => a + costo, 0);
-        }
+        if (shopping.length !== 0) return shopping.reduce((a, { costo }) => a + costo, 0);
 
         return 0
     }, [shopping])

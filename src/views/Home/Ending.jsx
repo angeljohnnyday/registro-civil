@@ -1,12 +1,31 @@
+import { useContext } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 import { CheckIcon } from 'assets/icons'
 import { formatter } from 'assets/js/generic'
+import { AppContext } from 'context/AppProvider'
 import { Button, Col, Row, Table } from 'react-bootstrap'
 
-const Ending = ({ shopping = [], customer, setLastStep }) => {
+const Ending = () => {
+    const { shopping, setLastStep, customer } = useContext(AppContext);
+    const history = useHistory();
+
     return (
         <div>
             <div className='p-3 mb-2 bg-light text-dark'>
-                <h4 className='f-200'>Entrega de documentos</h4>
+                <div className='d-flex'>
+                    <div className='me-auto'>
+                        <h4 className='f-200'>Entrega de documentos</h4>
+                    </div>
+                    <div>
+                        <Link
+                            to='/'
+                            className='text-decoration-none'
+                            onClick={() => setLastStep(false)}
+                        >
+                            Regresar
+                        </Link>
+                    </div>
+                </div>
                 <hr />
                 <Row>
                     <Col>
@@ -53,8 +72,8 @@ const Ending = ({ shopping = [], customer, setLastStep }) => {
                 </tbody>
             </Table>
             <ul className='mt-5'>
-                <li>Se ha enviado un correo electrónico con los documentos solicitados</li>
-                <li>No olvide revisar su bandeja de correos no deseados</li>
+                <li className='mb-2'>Se ha enviado un correo electrónico con los documentos solicitados</li>
+                <li className='mb-2'>No olvide revisar su bandeja de correos no deseados</li>
                 <li>Los archivos están en PDF, en casos de no visualizarlos, descargue el programa de manera gratuita aquí</li>
             </ul>
             <div
@@ -62,7 +81,7 @@ const Ending = ({ shopping = [], customer, setLastStep }) => {
             >
                 <Button
                     size='sm'
-                    onClick={() => setLastStep(false)}
+                    onClick={() => history.push('/pagos')}
                 >
                     Finalizar
                 </Button>
